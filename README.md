@@ -15,11 +15,23 @@
 
 ## 安装
 
+**从 GitHub 直接安装**（无需 npm 账号）：
+
 ```bash
-dsh plugin add dsh-token-weather
+dsh plugin add github:EARTH-subo/dsh-token-weather
+```
+
+或者用 pnpm 装进 profile：
+
+```bash
+cd ~/.dsh/profiles/<你的 profile>
+pnpm add github:EARTH-subo/dsh-token-weather
+# 然后把 "dsh-token-weather" 加进 package.json 的 dsh.profile.bundles
 ```
 
 装完**刷新页面**即可（客户端插件在页面加载时挂载），不需要重启宿主。
+
+> 本仓库自带 `cordis.patch.yml`，并由 `package.json` 的 `dsh.bundle.patch` 声明——**这是挂载生效的关键**：只把包名写进 `dsh.profile.bundles` 并不会插入任何 Loader 条目，插件不会出现。
 
 ## 数据来源
 
