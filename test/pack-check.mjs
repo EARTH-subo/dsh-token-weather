@@ -36,6 +36,15 @@ check(fs.existsSync(path.join(stage, 'lib/index.js')), 'lib/index.js ships')
 check(fs.existsSync(path.join(stage, 'cordis.patch.yml')), 'cordis.patch.yml ships')
 check(fs.existsSync(path.join(stage, 'README.md')), 'README.md ships')
 
+// Every image the README references must actually be inside the tarball,
+// otherwise the package page shows a broken preview.
+const readme = fs.readFileSync(path.join(stage, 'README.md'), 'utf8')
+const refs = [...readme.matchAll(/!\[[^\]]*\]\(([^)]+)\)/g)].map((m) => m[1])
+for (const ref of refs) {
+  const rel = ref.replace(/^\.\//, '')
+  check(fs.existsSync(path.join(stage, rel)), `README image ships: ${rel}`)
+}
+
 // The stub harness must NOT be part of the published package.
 check(!fs.existsSync(path.join(stage, 'node_modules')), 'no node_modules in the tarball')
 check(!fs.existsSync(path.join(stage, 'test')), 'no test/ in the tarball')
