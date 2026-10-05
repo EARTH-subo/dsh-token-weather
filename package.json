@@ -1,0 +1,69 @@
+{
+  "name": "dsh-token-weather",
+  "version": "0.1.0",
+  "description": "Token Weather for DeepSeek Harness: a composer-docked context-window gauge — weather icon, percentage, and progress bar fed live by the contextPressure session projection.",
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": { "default": "./lib/index.js" },
+    "./client": { "default": "./lib/client.js" },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib",
+    "cordis.patch.yml",
+    "README.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek-harness",
+    "deepseek",
+    "context-window",
+    "token-usage",
+    "weather",
+    "plugin"
+  ],
+  "author": "EARTH-subo",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EARTH-subo/dsh-token-weather.git"
+  },
+  "homepage": "https://github.com/EARTH-subo/dsh-token-weather#readme",
+  "bugs": {
+    "url": "https://github.com/EARTH-subo/dsh-token-weather/issues"
+  },
+  "dsh": {
+    "manifestVersion": 1,
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "inject": []
+    }
+  },
+  "dshWorkshop": {
+    "schema": "omdsh-workshop-package/v1",
+    "type": "plugin",
+    "integration": {
+      "protocol": "harness-profile",
+      "artifact": "cordis.patch.yml"
+    },
+    "lifecycle": {
+      "activation": "hot",
+      "dispose": "supported"
+    },
+    "permissions": [
+      "ui:slot"
+    ],
+    "capability": {
+      "id": "token-weather",
+      "kind": "surface",
+      "invocation": "conversation.input.dock",
+      "expected": "shows live context-window usage above the composer as weather + percentage + bar"
+    }
+  }
+}

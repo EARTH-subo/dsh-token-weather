@@ -1,0 +1,5 @@
+# Token Weather bundle patch: mounts the composer-docked context-window gauge.
+# `name` is the package name, resolved through the profile's node_modules.
+- insert:
+    - id: token-weather
+      name: dsh-token-weather

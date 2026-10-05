@@ -1,0 +1,14 @@
+# The offline test harness needs a tiny React stub; it must never be committed
+# or published (it is not a real dependency of the plugin).
+node_modules/
+test/node_modules/
+
+# Editor / OS noise
+.vscode/
+.idea/
+Thumbs.db
+Desktop.ini
+*.log
+
+# npm
+*.tgz
